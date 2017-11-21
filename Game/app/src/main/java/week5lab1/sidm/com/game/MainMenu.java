@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenu extends Activity implements View.OnClickListener{
@@ -31,8 +30,8 @@ public class MainMenu extends Activity implements View.OnClickListener{
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
 
-        //btn_credits = (Button)findViewById(R.id.btn_credits);
-        //btn_credits.setOnClickListener(this);
+        btn_credits = (Button)findViewById(R.id.btn_credits);
+        btn_credits.setOnClickListener(this); //Set Listener to this button --> Start Button
     }
 
     @Override
@@ -51,10 +50,10 @@ public class MainMenu extends Activity implements View.OnClickListener{
             intent.setClass(this, Gamepage.class);
         }
 
-        // else if (v == btn_credits)
-        //{
-           // intent.setClass(this, Credits.class);
-        //}
+         else if (v == btn_credits)
+        {
+            intent.setClass(this, Creditspage.class);
+        }
         startActivity(intent);
     }
 }
