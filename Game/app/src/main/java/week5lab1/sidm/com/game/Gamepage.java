@@ -23,7 +23,10 @@ public class Gamepage extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //Hide Top Bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //setContentView(new Gameview(this));
 
         setContentView(R.layout.gamepage);
     }
