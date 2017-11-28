@@ -1,6 +1,7 @@
 package week5lab1.sidm.com.game;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -51,4 +52,5 @@ public class Gameview extends SurfaceView
             }
         }
     }
+
 }

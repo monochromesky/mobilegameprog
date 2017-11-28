@@ -15,7 +15,7 @@ public class SGame
 
     private Bitmap bmp;
     float offset = 0.f;
-
+    float timer = 0.f;
     //Constructor does not allow anyone else to create another game
     private SGame()
     {
@@ -23,17 +23,23 @@ public class SGame
     }
     public void Update(float deltaTime)
     {
-        offset += deltaTime;
+        timer += deltaTime;
+        if (timer > 1.f)
+        {
+            SampleEntity.Create();
+            timer = 0.f;
+        }
+        EntityManager.Instance.Update(deltaTime);
     }
     public void Init(SurfaceView _view)
     {
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
-
+        EntityManager.Instance.Init(_view);
+        SampleBackground.Create();
     }
     protected void Render (Canvas _canvas)
     {
-        int currOffset = (int)(offset * 100.f);
-        _canvas.drawBitmap(bmp, currOffset, 10, null);
+        EntityManager.Instance.Render(_canvas);
     }
 
 }
+
