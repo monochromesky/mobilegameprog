@@ -13,6 +13,7 @@ public class MainMenu extends Activity implements View.OnClickListener{
     //define Buttons
     private Button btn_start;
     private Button btn_credits;
+    private Button btn_option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,9 @@ public class MainMenu extends Activity implements View.OnClickListener{
 
         btn_start = (Button)findViewById(R.id.btn_start);
         btn_start.setOnClickListener(this); //Set Listener to this button --> Start Button
+
+        btn_option = (Button)findViewById(R.id.btn_option);
+        btn_option.setOnClickListener(this); //Set Listener to this button --> Start Button
 
         btn_credits = (Button)findViewById(R.id.btn_credits);
         btn_credits.setOnClickListener(this); //Set Listener to this button --> Start Button
@@ -48,6 +52,11 @@ public class MainMenu extends Activity implements View.OnClickListener{
         {
             // intent --> to set to another class which another page or screen that we are launching
             intent.setClass(this, Gamepage.class);
+        }
+
+        else if (v == btn_option)
+        {
+            intent.setClass(this, Optionpage.class);
         }
 
          else if (v == btn_credits)
