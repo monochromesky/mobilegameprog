@@ -7,9 +7,13 @@ import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class SampleEntity implements EntityBase, Collidable
+// TODO: HAZARDS THAT FALL FROM THE SKYYY
+
+public class Hazards implements EntityBase, Collidable
 {
     private Bitmap bmp = null;
+    private Bitmap metalhazard, glasshazard, plastichazard = null;
+
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
 
@@ -26,7 +30,9 @@ public class SampleEntity implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
+        metalhazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.metal);
+      //  glasshazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.glasshazard);
+       // plastichazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.plastichazard);
 
         lifeTime = 5.0f;
         Random ranGen = new Random();
@@ -72,20 +78,23 @@ public class SampleEntity implements EntityBase, Collidable
     @Override
     public void Render(Canvas _canvas) {
         // Centers the image, makes sure it isn't cut off
-        _canvas.drawBitmap(bmp, xPos - bmp.getWidth() * 0.5f, yPos - bmp.getHeight() * 0.5f, null);
+        _canvas.drawBitmap(metalhazard, xPos - bmp.getWidth() * 0.5f, yPos - metalhazard.getHeight() * 0.5f, null);
+       // _canvas.drawBitmap(glasshazard, xPos - bmp.getWidth() * 0.5f, yPos - glasshazard.getHeight() * 0.5f, null);
+       // _canvas.drawBitmap(plastichazard, xPos - bmp.getWidth() * 0.5f, yPos - plastichazard.getHeight() * 0.5f, null);
+
     }
 
 
-    public static SampleEntity Create()
+    public static Hazards Create()
     {
-        SampleEntity result = new SampleEntity();
+        Hazards result = new Hazards();
         EntityManager.Instance.AddEntity(result);
         return result;
     }
 
     @Override
     public String GetType() {
-        return "SampleEntity";
+        return "Hazards";
     }
 
     @Override
@@ -100,12 +109,14 @@ public class SampleEntity implements EntityBase, Collidable
 
     @Override
     public float GetRadius() {
-        return bmp.getHeight() * 0.5f;
+        return metalhazard.getHeight() * 0.5f;
+       // return glasshazard.getHeight() * 0.5f;
+        //return plastichazard.getHeight() * 0.5f;
     }
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "SampleEntity")
+        if (_other.GetType() == "Hazards")
         {
             SetIsDone(true);
         }
