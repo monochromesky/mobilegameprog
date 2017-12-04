@@ -79,7 +79,7 @@ public class platform implements EntityBase, Collidable
                     0.0f, xPos, yPos, imgRadius))
             {
                 // Collided!
-                SetIsDone(true);
+                //SetIsDone(true);
             }
         }
     }

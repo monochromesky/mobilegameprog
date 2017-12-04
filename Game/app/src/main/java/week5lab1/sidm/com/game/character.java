@@ -20,6 +20,8 @@ public class character implements EntityBase, Collidable
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
 
+    public boolean isWalk = true;
+
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
 
@@ -37,12 +39,21 @@ public class character implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        // bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
-        charapic[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk1);
-        charapic[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk2);
-        charapic[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk3);
-        charapic[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk4);
-
+        if (isWalk)
+        {
+            // bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
+            charapic[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk1);
+            charapic[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk2);
+            charapic[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk3);
+            charapic[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk4);
+        }
+        else
+        {
+            charapic[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump1);
+            charapic[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump2);
+            charapic[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump3);
+            charapic[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump4);
+        }
 
         lifeTime = 5.0f;
 
@@ -54,7 +65,9 @@ public class character implements EntityBase, Collidable
         // yPos = ranGen.nextFloat() * _view.getHeight();
 
         // xDir = ranGen.nextFloat() * 100.0f - 50.f;
-        // yDir = ranGen.nextFloat() * 100.0f - 50.f;
+         //yDir = ranGen.nextFloat() * 100.0f - 50.f;
+
+        yDir = 500.f;
 
         currentAlpha = 255;
     }
@@ -94,8 +107,25 @@ public class character implements EntityBase, Collidable
             {
                 // Collided!
                 // TODO : CHARACTER PICKS UP HEARTS
+
+                // TODO : CHARACTER TRANSLATES & USES JUMP ANIMATION WHEN TAPPED
+                //isWalk=false;
                 //SetIsDone(true);
+
+                //if (!isWalk)
+                //{
+                    yPos -= yDir*_dt;
+                    //yPos += yDir*_dt;
+                //}
             }
+        }
+        else
+        {
+            //isWalk=true;
+            //if (isWalk)
+            //{
+                yPos += yDir*_dt;
+            //}
         }
     }
 
@@ -110,6 +140,9 @@ public class character implements EntityBase, Collidable
 
         // Centers the image, makes sure it isn't cut off
         //if (currentAlpha > 100) {
+
+
+
         _canvas.drawBitmap(charapic[animIndex], xPos - charapic[animIndex].getWidth() * 0.5f, yPos - charapic[animIndex].getHeight() * 0.5f, null);
 
     }
