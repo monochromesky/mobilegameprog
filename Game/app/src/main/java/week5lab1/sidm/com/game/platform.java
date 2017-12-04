@@ -3,19 +3,25 @@ package week5lab1.sidm.com.game;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
-// TODO: HAZARDS THAT FALL FROM THE SKYYY
+/**
+ * Created by Wafieqa on 12/4/2017.
+ */
 
-public class Hazards implements EntityBase, Collidable
+public class platform implements EntityBase, Collidable
 {
-    private Bitmap bmp = null;
-    private Bitmap metalhazard, glasshazard, plastichazard = null;
+    //  private Bitmap bmp = null;
+    private Bitmap platformpic = null;
 
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
+
+    private int currentAlpha;
+    private Paint alphaPaint = new Paint();
 
     @Override
     public boolean IsDone() {
@@ -30,31 +36,33 @@ public class Hazards implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk1);
-        metalhazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.metal);
-      //  glasshazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.glasshazard);
-       // plastichazard = BitmapFactory.decodeResource(_view.getResources(), R.drawable.plastichazard);
+        // bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
+        platformpic = BitmapFactory.decodeResource(_view.getResources(), R.drawable._platform);
 
         lifeTime = 5.0f;
         Random ranGen = new Random();
 
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos =  0;
+        //xPos = 50;
+        //yPos = 50;
+      //  xPos = ranGen.nextFloat() * _view.getWidth();
+       // yPos = ranGen.nextFloat() * _view.getHeight();
 
-        //xDir = ranGen.nextFloat() * 100.0f - 50.f;
-        //yDir = ranGen.nextFloat() * 100.0f - 50.f;
+       // xDir = ranGen.nextFloat() * 100.0f - 50.f;
+       // yDir = ranGen.nextFloat() * 100.0f - 50.f;
+
+        currentAlpha = 255;
     }
 
     @Override
     public void Update(float _dt) {
-        lifeTime -= _dt;
+       // lifeTime -= _dt;
 
-        if(lifeTime < 0.f)
-        {
-            SetIsDone(true);
-        }
+     //   if(lifeTime < 0.f)
+      //  {
+      //      SetIsDone(true);
+       // }
        // xPos += xDir * _dt;
-        yPos += 150 * _dt; //add y will make it fall for some reason
+       // yPos += yDir * _dt;
 
         // If user clicks on object, remove object (it dies)
         // if (android.gettouch..etc)
@@ -65,7 +73,7 @@ public class Hazards implements EntityBase, Collidable
         if (TouchManager.Instance.IsDown())
         {
             // Check Collision here
-            float imgRadius = bmp.getHeight() * 0.5f;
+            float imgRadius = platformpic.getHeight() * 0.5f;
 
             if(Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(),
                     0.0f, xPos, yPos, imgRadius))
@@ -78,24 +86,31 @@ public class Hazards implements EntityBase, Collidable
 
     @Override
     public void Render(Canvas _canvas) {
+
+        // Fading Animation
+        //if (currentAlpha > 0) {
+        // _canvas.drawBitmap(skybg, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, alphaPaint);
+        //currentAlpha -= 1;
+        //alphaPaint.setAlpha(currentAlpha);
+
         // Centers the image, makes sure it isn't cut off
-        _canvas.drawBitmap(metalhazard, xPos - bmp.getWidth() * 0.5f, yPos - metalhazard.getHeight() * 0.5f, null);
-       // _canvas.drawBitmap(glasshazard, xPos - bmp.getWidth() * 0.5f, yPos - glasshazard.getHeight() * 0.5f, null);
-       // _canvas.drawBitmap(plastichazard, xPos - bmp.getWidth() * 0.5f, yPos - plastichazard.getHeight() * 0.5f, null);
+        //if (currentAlpha > 100) {
+        _canvas.drawBitmap(platformpic, xPos - platformpic.getWidth() * 0.5f, yPos - platformpic.getHeight() * 0.5f, null);
 
     }
 
 
-    public static Hazards Create()
+    public static platform Create(int pox, int posy)
     {
-        Hazards result = new Hazards();
+        platform result = new platform();
+        result.xPos = pox;
+        result.yPos = posy;
         EntityManager.Instance.AddEntity(result);
         return result;
     }
-
     @Override
     public String GetType() {
-        return "Hazards";
+        return "platform";
     }
 
     @Override
@@ -110,17 +125,14 @@ public class Hazards implements EntityBase, Collidable
 
     @Override
     public float GetRadius() {
-        return metalhazard.getHeight() * 0.5f;
-       // return glasshazard.getHeight() * 0.5f;
-        //return plastichazard.getHeight() * 0.5f;
+        return platformpic.getHeight() * 0.5f;
     }
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "Hazards")
+        if (_other.GetType() == "platform")
         {
-            SetIsDone(true);
+          //  SetIsDone(true);
         }
     }
 }
-

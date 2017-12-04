@@ -26,6 +26,8 @@ public class SGame
         if (timer > 1.f)
         {
             HeartHP.Create();
+            Hazards.Create();
+
             timer = 0.f;
         }
         EntityManager.Instance.Update(deltaTime);
@@ -34,9 +36,12 @@ public class SGame
     {
         EntityManager.Instance.Init(_view);
         GameBackground.Create();
+        platform.Create(1500, 600);
+        platform.Create(-100,1100);
+        platform.Create(200,1600);
+        character.Create(200,1000);
         UI.Create();
         //Hazards.Create();
-
     }
     protected void Render (Canvas _canvas)
     {
