@@ -1,7 +1,6 @@
 package week5lab1.sidm.com.game;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
@@ -26,7 +25,7 @@ public class SGame
         timer += deltaTime;
         if (timer > 1.f)
         {
-            SampleEntity.Create();
+            HeartHP.Create();
             timer = 0.f;
         }
         EntityManager.Instance.Update(deltaTime);
@@ -34,7 +33,10 @@ public class SGame
     public void Init(SurfaceView _view)
     {
         EntityManager.Instance.Init(_view);
-        SampleBackground.Create();
+        GameBackground.Create();
+        UI.Create();
+        //Hazards.Create();
+
     }
     protected void Render (Canvas _canvas)
     {
