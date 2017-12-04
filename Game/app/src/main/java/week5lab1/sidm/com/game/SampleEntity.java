@@ -26,7 +26,7 @@ public class SampleEntity implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk1);
 
         lifeTime = 5.0f;
         Random ranGen = new Random();
