@@ -16,7 +16,7 @@ public class character implements EntityBase, Collidable
 {
     //  private Bitmap bmp = null;
     private Bitmap [] charapic = new Bitmap[4];
-
+    private float timerDelay = 0.25f;
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
 
@@ -45,6 +45,7 @@ public class character implements EntityBase, Collidable
 
 
         lifeTime = 5.0f;
+
         Random ranGen = new Random();
 
         //xPos = 50;
@@ -72,8 +73,14 @@ public class character implements EntityBase, Collidable
         // If user clicks on object, remove object (it dies)
         // if (android.gettouch..etc)
         // Handle the touch and check collision with click/touch
+        timerDelay-= _dt;
 
-        animIndex++;
+        if (timerDelay <= 0)
+        {
+            animIndex++;
+            timerDelay = 0.25f;
+        }
+
         animIndex %= 4;
 
         // ABSTRACTION - Can modify for another platform easily
@@ -86,7 +93,8 @@ public class character implements EntityBase, Collidable
                     0.0f, xPos, yPos, imgRadius))
             {
                 // Collided!
-                SetIsDone(true);
+                // TODO : CHARACTER PICKS UP HEARTS
+                //SetIsDone(true);
             }
         }
     }
