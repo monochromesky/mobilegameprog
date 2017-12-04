@@ -41,8 +41,8 @@ public class HeartHP implements EntityBase, Collidable
         xPos = ranGen.nextFloat() * _view.getWidth();
         yPos = ranGen.nextFloat() * _view.getHeight();
 
-        xDir = ranGen.nextFloat() * 100.0f - 50.f;
-        yDir = ranGen.nextFloat() * 100.0f - 50.f;
+        //xDir = ranGen.nextFloat() * 100.0f - 50.f;
+        //yDir = ranGen.nextFloat() * 100.0f - 50.f;
 
         currentAlpha = 255;
     }
@@ -57,6 +57,9 @@ public class HeartHP implements EntityBase, Collidable
         }
         xPos += xDir * _dt;
         yPos += yDir * _dt;
+
+        //xPos *= _dt;
+        //yPos *= _dt;
 
         // If user clicks on object, remove object (it dies)
         // if (android.gettouch..etc)

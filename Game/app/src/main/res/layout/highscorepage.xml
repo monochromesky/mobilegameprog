@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/backgnd"
+    android:layout_height="match_parent"
+    tools:context="week5lab1.sidm.com.game.Highscore">
+
+    <TextView
+
+        android:id="@+id/btn_highscore"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:background="@drawable/button"
+
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="191dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn_goback" />
+
+    <Button
+
+        android:id="@+id/btn_goback"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:text="Main Menu"
+        android:background="@drawable/button"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="91dp"
+        android:layout_below="@+id/btn_highscore"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
