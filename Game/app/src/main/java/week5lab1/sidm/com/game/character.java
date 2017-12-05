@@ -59,6 +59,9 @@ public class character implements EntityBase, Collidable
             charapic2[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump4);
 
 
+        //TODO: add boundary
+
+
         lifeTime = 5.0f;
 
         Random ranGen = new Random();
@@ -135,7 +138,7 @@ public class character implements EntityBase, Collidable
         if (TouchManager.Instance.IsFlingRight())
         {
             // Check Collision here
-            xDir = 1500.f;
+            xDir = 500.f;
             xPos -= xDir*_dt;
 
         }
@@ -145,7 +148,7 @@ public class character implements EntityBase, Collidable
         if (TouchManager.Instance.IsFlingLeft())
         {
             // Check Collision here
-            xDir = -1500.f;
+            xDir = -500.f;
             xPos -= xDir*_dt;
 
         }

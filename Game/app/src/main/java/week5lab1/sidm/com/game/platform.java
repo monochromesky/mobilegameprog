@@ -24,6 +24,9 @@ public class platform implements EntityBase, Collidable
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
 
+    //TODO: change the collision here to cube, not circle
+
+
     @Override
     public boolean IsDone() {
         //return health <= 0; E.g
