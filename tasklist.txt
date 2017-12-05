@@ -1,8 +1,43 @@
-Esther:
+TASK LIST:
 
-Wafie:
--Character
-	-'Gravity' 30%
-	-Collision
-		-platform 100%
-	-
+ESTHER 100%:
+- Health system 
+- Collider
+- UI
+- Changing background sky + moving clouds
+- Swipe
+- Highscore 
+- Art Assets (except Character)
+- Main Menu & Credits
+- Spawning healthhearts/hazards
+
+WAFIE 100%:
+- Character movement
+- Sprite Animation for character
+- Character Art
+- Splash Screen + Options screen
+- Falling hazards
+- Platforms
+
+
+TODO:
+- Improve jumping/movement physics
+- Collider (pick up health)
+- Fix rendering issues
+- Back to mainmenu prob
+- Highscore
+- If taken damage, screen shakes
+- Change character and platform collider to square collider
+- Audio/Sound effects
+- Boundary
+- Damage from Hazards
+- Pause screen?
+- AI?
+- Randomly spawning Platforms
+- Scrolling screen for platforms (Dropper aspect)
+- Flip Character image when facing the other way
+- Make the graphics compatible for other phone screen sizes
+
+// Delete Updatethread gameview
+-- then create new one
+--prevents multithreading
