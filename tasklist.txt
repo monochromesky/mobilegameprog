@@ -1,0 +1,8 @@
+Esther:
+
+Wafie:
+-Character
+	-'Gravity' 30%
+	-Collision
+		-platform 100%
+	-
