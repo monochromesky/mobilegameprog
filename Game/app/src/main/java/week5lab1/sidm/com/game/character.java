@@ -16,11 +16,10 @@ public class character implements EntityBase, Collidable
 {
     //  private Bitmap bmp = null;
     private Bitmap [] charapic = new Bitmap[4];
+    private Bitmap [] charapic2 = new Bitmap[4];
     private float timerDelay = 0.25f;
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
-
-    public boolean isWalk = true;
 
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
@@ -39,21 +38,19 @@ public class character implements EntityBase, Collidable
 
     @Override
     public void Init(SurfaceView _view) {
-        if (isWalk)
-        {
+
             // bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.ship2_1);
             charapic[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk1);
             charapic[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk2);
             charapic[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk3);
             charapic[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.walk4);
-        }
-        else
-        {
-            charapic[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump1);
-            charapic[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump2);
-            charapic[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump3);
-            charapic[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump4);
-        }
+
+
+            charapic2[0] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump1);
+            charapic2[1] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump2);
+            charapic2[2] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump3);
+            charapic2[3] = BitmapFactory.decodeResource(_view.getResources(), R.drawable.jump4);
+
 
         lifeTime = 5.0f;
 
@@ -96,11 +93,14 @@ public class character implements EntityBase, Collidable
 
         animIndex %= 4;
 
+        //float imgRadius = charapic[animIndex].getHeight() * 0.5f;
+
         // ABSTRACTION - Can modify for another platform easily
         if (TouchManager.Instance.IsDown())
         {
             // Check Collision here
-            float imgRadius = charapic[animIndex].getHeight() * 0.5f;
+
+            float imgRadius = charapic2[animIndex].getHeight() * 0.5f;
 
             if(Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(),
                     0.0f, xPos, yPos, imgRadius))
@@ -112,10 +112,7 @@ public class character implements EntityBase, Collidable
                 //isWalk=false;
                 //SetIsDone(true);
 
-                //if (!isWalk)
-                //{
-                    yPos -= yDir*_dt;
-                    //yPos += yDir*_dt;
+                yPos -= yDir*_dt;
                 //}
             }
         }
@@ -124,7 +121,8 @@ public class character implements EntityBase, Collidable
             //isWalk=true;
             //if (isWalk)
             //{
-                yPos += yDir*_dt;
+            //TODO: get the collision for platform to prevent character from falling through.
+                //yPos += yDir*_dt;
             //}
         }
     }
@@ -144,6 +142,8 @@ public class character implements EntityBase, Collidable
 
 
         _canvas.drawBitmap(charapic[animIndex], xPos - charapic[animIndex].getWidth() * 0.5f, yPos - charapic[animIndex].getHeight() * 0.5f, null);
+        _canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
+
 
     }
 
