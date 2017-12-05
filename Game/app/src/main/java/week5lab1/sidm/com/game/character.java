@@ -166,11 +166,23 @@ public class character implements EntityBase, Collidable
         // Centers the image, makes sure it isn't cut off
         //if (currentAlpha > 100) {
 
-
-
-        _canvas.drawBitmap(charapic[animIndex], xPos - charapic[animIndex].getWidth() * 0.5f, yPos - charapic[animIndex].getHeight() * 0.5f, null);
-        _canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
-
+        if (TouchManager.Instance.IsFlingRight() || TouchManager.Instance.IsDown())
+        {
+            _canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
+        }
+        if (TouchManager.Instance.IsFlingLeft() || TouchManager.Instance.IsDown())
+        {
+            _canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
+        }
+        //if (TouchManager.Instance.IsDown())
+        //{
+        //    _canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
+        //}
+        else
+        {
+            _canvas.drawBitmap(charapic[animIndex], xPos - charapic[animIndex].getWidth() * 0.5f, yPos - charapic[animIndex].getHeight() * 0.5f, null);
+        }
+        //_canvas.drawBitmap(charapic2[animIndex], xPos - charapic2[animIndex].getWidth() * 0.5f, yPos - charapic2[animIndex].getHeight() * 0.5f, null);
 
     }
 
