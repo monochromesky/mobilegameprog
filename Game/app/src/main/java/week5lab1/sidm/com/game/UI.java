@@ -13,9 +13,10 @@ import android.view.SurfaceView;
 public class UI implements EntityBase {
 
     // TODO : ADD UI
+//extends Activity implements View.OnClickListener
 
-
-    private Bitmap bottomui = null;
+    private Bitmap bottomui, fullhp, twohp, onehp, nohp = null;
+    private Bitmap hearticon = null;
 
     private boolean isDone = false;
 
@@ -39,6 +40,10 @@ public class UI implements EntityBase {
     {
         // bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.gamescene);
         bottomui = BitmapFactory.decodeResource(_view.getResources(), R.drawable.bottomui);
+        fullhp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.fullhp);
+        twohp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.twohp);
+        onehp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.onehp);
+        nohp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.zerohp);
 
         offset = 0.0f;
         view = _view;
@@ -58,7 +63,26 @@ public class UI implements EntityBase {
 
         // Sky BG
         // _canvas.drawBitmap(skybg, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
-        _canvas.drawBitmap(bottomui, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+       // _canvas.drawBitmap(bottomui, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+
+        //Hardcoding the goddamned HP until i find a better way
+
+        if (HealthSystem.Instance.getHealth() == 3)
+        {
+            _canvas.drawBitmap(fullhp, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+        }
+        else if (HealthSystem.Instance.getHealth() == 2)
+        {
+            _canvas.drawBitmap(twohp, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+        }
+        else if (HealthSystem.Instance.getHealth() == 1)
+        {
+            _canvas.drawBitmap(onehp, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+        }
+        else if (HealthSystem.Instance.getHealth() == 0)
+        {
+            _canvas.drawBitmap(nohp, xPos - view.getWidth() * 0.5f, yPos - view.getHeight() * 0.5f, null);
+        }
 
     }
 
@@ -70,3 +94,4 @@ public class UI implements EntityBase {
     }
 
 }
+
