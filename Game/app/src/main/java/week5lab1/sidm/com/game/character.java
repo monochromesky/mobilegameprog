@@ -21,7 +21,7 @@ public class character implements EntityBase, Collidable
     private float timerDelay = 0.25f;
     private boolean isDone = false;
     private boolean thePlatform = false;
-    private float xPos, yPos, xDir, yDir, lifeTime;
+    private float xPos, yPos, xDir, yDir, lifeTime, xPos2;
 
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
@@ -127,6 +127,26 @@ public class character implements EntityBase, Collidable
             // Check Collision here
             yDir = 1500.f;
             yPos -= yDir*_dt;
+
+        }
+
+        xPos += xDir*_dt;
+        //swipe right
+        if (TouchManager.Instance.IsFlingRight())
+        {
+            // Check Collision here
+            xDir = 1500.f;
+            xPos -= xDir*_dt;
+
+        }
+
+        //xPos2 -= xDir*_dt;
+        //swipe left
+        if (TouchManager.Instance.IsFlingLeft())
+        {
+            // Check Collision here
+            xDir = -1500.f;
+            xPos -= xDir*_dt;
 
         }
     }

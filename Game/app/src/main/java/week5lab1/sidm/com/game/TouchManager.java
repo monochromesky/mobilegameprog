@@ -19,8 +19,8 @@ public class TouchManager
         NONE,
         DOWN,
         MOVE,
-        FLING_DOWN,
-        FLING_UP
+        FLING_Left,
+        FLING_Right
     }
     private TouchState status = TouchState.NONE;
     private int posX, posY;
@@ -42,15 +42,15 @@ public class TouchManager
     }
 
     //Check for sweeping movements from UP to DOWN
-    public boolean IsFlingDown()
+    public boolean IsFlingLeft()
     {
-        return status == TouchState.FLING_DOWN;
+        return status == TouchState.FLING_Left;
     }
 
     //Check for sweeping movements from DOWN to UP
-    public boolean IsFlingUp()
+    public boolean IsFlingRight()
     {
-        return status == TouchState.FLING_UP;
+        return status == TouchState.FLING_Right;
     }
 
     public int GetPosX()
@@ -90,15 +90,15 @@ public class TouchManager
                 posY2 = _posY;
 
                 //If UP to DOWN sweep event on screen
-                if (posY < posY2)
+                if (posX > posX2)
                 {
-                    status = TouchState.FLING_DOWN;
+                    status = TouchState.FLING_Left;
                 }
 
                 //If DOWN to UP sweep event on screen
-                if (posY > posY2)
+                if (posX < posX2)
                 {
-                    status = TouchState.FLING_UP;
+                    status = TouchState.FLING_Right;
                 }
 
                 break;
