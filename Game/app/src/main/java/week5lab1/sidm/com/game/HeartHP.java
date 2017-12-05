@@ -39,7 +39,10 @@ public class HeartHP implements EntityBase, Collidable
         Random ranGen = new Random();
 
         xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+        yPos = 0;
+
+        //xPos = ranGen.nextFloat() * _view.getWidth();
+        //yPos = ranGen.nextFloat() * _view.getHeight();
 
         //xDir = ranGen.nextFloat() * 100.0f - 50.f;
         //yDir = ranGen.nextFloat() * 100.0f - 50.f;
@@ -55,8 +58,8 @@ public class HeartHP implements EntityBase, Collidable
         {
             SetIsDone(true);
         }
-        xPos += xDir * _dt;
-        yPos += yDir * _dt;
+        //xPos += xDir * _dt;
+        yPos += 150 * _dt;
 
         //xPos *= _dt;
         //yPos *= _dt;

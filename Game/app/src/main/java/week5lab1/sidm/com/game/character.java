@@ -22,7 +22,7 @@ public class character implements EntityBase, Collidable
     private boolean isDone = false;
     private boolean thePlatform = false;
     private float xPos, yPos, xDir, yDir, lifeTime, xPos2;
-
+    int playerhealth;
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
 
@@ -77,6 +77,8 @@ public class character implements EntityBase, Collidable
         yDir = 500.f;
 
         currentAlpha = 255;
+        HealthSystem.Instance.setHealth(3);
+        playerhealth = HealthSystem.Instance.getHealth();
     }
 
     @Override
@@ -93,6 +95,17 @@ public class character implements EntityBase, Collidable
         // If user clicks on object, remove object (it dies)
         // if (android.gettouch..etc)
         // Handle the touch and check collision with click/touch
+        // HEALTH LIMIT
+        if (playerhealth > 3)
+            playerhealth = 3;
+        if (playerhealth < 0)
+        {
+            playerhealth = 0;
+            //TODO: If timer reaches 0/health reaches 0, redirect to highscore page
+        }
+        HealthSystem.Instance.setHealth(playerhealth);
+
+
         timerDelay-= _dt;
 
         if (timerDelay <= 0)
@@ -217,9 +230,17 @@ public class character implements EntityBase, Collidable
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "character")
+        if (_other.GetType() == "HeartHP")
         {
-            //  SetIsDone(true);
+            //SetIsDone(true);
+
+            playerhealth++;
+        }
+        else if (_other.GetType() == "Hazards")
+        {
+             //SetIsDone(true);
+
+            playerhealth--;
         }
     }
 }

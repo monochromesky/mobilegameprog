@@ -56,7 +56,7 @@ public class MainMenu extends Activity implements View.OnClickListener{
 
         else if (v == btn_option)
         {
-            intent.setClass(this, Optionpage.class);
+            intent.setClass(this, Highscore.class);
         }
 
          else if (v == btn_credits)

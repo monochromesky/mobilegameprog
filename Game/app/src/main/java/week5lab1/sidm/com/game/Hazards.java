@@ -121,7 +121,7 @@ public class Hazards implements EntityBase, Collidable
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "Hazards")
+        if (_other.GetType() == "Hazards" || _other.GetType() == "character")
         {
             SetIsDone(true);
         }

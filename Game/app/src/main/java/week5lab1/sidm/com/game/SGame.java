@@ -43,7 +43,7 @@ public class SGame
 
             timer = 0.f;
             points += 1;
-            hp -= 1;
+           // hp -= 1;
         }
         EntityManager.Instance.Update(deltaTime);
 
@@ -57,15 +57,7 @@ public class SGame
         }
         Score.Instance.setScore(points);
 
-        // HEALTH LIMIT
-        if (hp > 3)
-            hp = 3;
-        if (hp < 0)
-        {
-            hp = 0;
-            //TODO: If timer reaches 0/health reaches 0, redirect to highscore page
-        }
-        HealthSystem.Instance.setHealth(hp);
+
     }
     public void Init(SurfaceView _view)
     {
@@ -86,8 +78,8 @@ public class SGame
 
         //Highscore
         points = 0;
-        hp = 3;
-        HealthSystem.Instance.setHealth(hp);
+        //hp = 3;
+       // HealthSystem.Instance.setHealth(hp);
 
     }
     protected void Render (Canvas _canvas)
