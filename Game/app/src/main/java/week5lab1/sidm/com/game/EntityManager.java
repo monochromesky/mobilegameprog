@@ -16,6 +16,11 @@ public class EntityManager
     {
 
     }
+
+    public LinkedList<EntityBase> GetListOfArray()
+    {
+        return entityList;
+    }
     //This function is only called once, at the start of our game update thread
     //Cannot be used to init our entities
     public void Init(SurfaceView _view)

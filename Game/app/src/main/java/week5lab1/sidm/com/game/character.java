@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.SurfaceView;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -19,6 +20,7 @@ public class character implements EntityBase, Collidable
     private Bitmap [] charapic2 = new Bitmap[4];
     private float timerDelay = 0.25f;
     private boolean isDone = false;
+    private boolean thePlatform = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
 
     private int currentAlpha;
@@ -31,6 +33,11 @@ public class character implements EntityBase, Collidable
         return isDone;
     }
 
+    @Override
+    public boolean isPlatform()
+    {
+        return false;
+    }
     @Override
     public void SetIsDone(boolean _isDone) {
         isDone = _isDone;
@@ -92,38 +99,35 @@ public class character implements EntityBase, Collidable
         }
 
         animIndex %= 4;
+        float imgRadius = charapic2[animIndex].getHeight() * 0.5f;
 
         //float imgRadius = charapic[animIndex].getHeight() * 0.5f;
+        LinkedList<EntityBase> currentListOfObj = EntityManager.Instance.GetListOfArray();
 
+        for (EntityBase it : currentListOfObj)
+        {
+            if (it.isPlatform() && !TouchManager.Instance.IsDown()) {
+                if (it instanceof Collidable) {
+                    if (Collision.SphereToSphere(((Collidable) it).GetPosX(), ((Collidable) it).GetPosY(), ((Collidable) it).GetRadius(), xPos, yPos, imgRadius)) {
+                        yDir = 0;
+                        break;
+                    }
+                    else
+                    {
+                        //TODO: get the collision for platform to prevent character from falling through.
+                        yDir = 500.f;
+                    }
+                }
+            }
+        }
+        yPos += yDir*_dt;
         // ABSTRACTION - Can modify for another platform easily
         if (TouchManager.Instance.IsDown())
         {
             // Check Collision here
+            yDir = 1500.f;
+            yPos -= yDir*_dt;
 
-            float imgRadius = charapic2[animIndex].getHeight() * 0.5f;
-
-            if(Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(),
-                    0.0f, xPos, yPos, imgRadius))
-            {
-                // Collided!
-                // TODO : CHARACTER PICKS UP HEARTS
-
-                // TODO : CHARACTER TRANSLATES & USES JUMP ANIMATION WHEN TAPPED
-                //isWalk=false;
-                //SetIsDone(true);
-
-                yPos -= yDir*_dt;
-                //}
-            }
-        }
-        else
-        {
-            //isWalk=true;
-            //if (isWalk)
-            //{
-            //TODO: get the collision for platform to prevent character from falling through.
-                //yPos += yDir*_dt;
-            //}
         }
     }
 

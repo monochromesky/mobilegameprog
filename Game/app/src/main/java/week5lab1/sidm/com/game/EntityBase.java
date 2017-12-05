@@ -8,7 +8,7 @@ public interface EntityBase
 {
     boolean IsDone();
     void SetIsDone(boolean _isDone);
-
+    boolean isPlatform();
     void Init(SurfaceView _view);
     void Update(float _dt);
     void Render (Canvas _canvas);

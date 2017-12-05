@@ -27,7 +27,11 @@ public class GameBackground implements EntityBase
     {
         return isDone;
     }
-
+    @Override
+    public boolean isPlatform()
+    {
+        return false;
+    }
     @Override
     public void SetIsDone(boolean _isDone)
     {

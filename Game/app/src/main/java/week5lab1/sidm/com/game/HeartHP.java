@@ -96,7 +96,11 @@ public class HeartHP implements EntityBase, Collidable
 
     }
 
-
+    @Override
+    public boolean isPlatform()
+    {
+        return false;
+    }
     public static HeartHP Create()
     {
         HeartHP result = new HeartHP();

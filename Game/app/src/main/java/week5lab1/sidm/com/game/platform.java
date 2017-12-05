@@ -18,6 +18,7 @@ public class platform implements EntityBase, Collidable
     private Bitmap platformpic = null;
 
     private boolean isDone = false;
+    private boolean thePlatform = true;
     private float xPos, yPos, xDir, yDir, lifeTime;
 
     private int currentAlpha;
@@ -99,6 +100,11 @@ public class platform implements EntityBase, Collidable
 
     }
 
+    @Override
+    public boolean isPlatform()
+    {
+        return thePlatform;
+    }
 
     public static platform Create(int pox, int posy)
     {

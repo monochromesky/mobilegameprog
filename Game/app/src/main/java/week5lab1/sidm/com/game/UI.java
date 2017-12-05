@@ -24,6 +24,11 @@ public class UI implements EntityBase {
     private SurfaceView view = null;
 
     @Override
+    public boolean isPlatform()
+    {
+        return false;
+    }
+    @Override
     public boolean IsDone()
     {
         return isDone;

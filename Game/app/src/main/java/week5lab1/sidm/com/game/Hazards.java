@@ -44,7 +44,11 @@ public class Hazards implements EntityBase, Collidable
         //xDir = ranGen.nextFloat() * 100.0f - 50.f;
         //yDir = ranGen.nextFloat() * 100.0f - 50.f;
     }
-
+    @Override
+    public boolean isPlatform()
+    {
+        return false;
+    }
     @Override
     public void Update(float _dt) {
         lifeTime -= _dt;

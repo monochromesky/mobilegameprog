@@ -80,7 +80,7 @@ public class SGame
         platform.Create(700, 800);
         platform.Create(100,1100);
         platform.Create(600,1400);
-        character.Create(200,1000);
+        character.Create(200,50);
         UI.Create();
         //Hazards.Create();
 
