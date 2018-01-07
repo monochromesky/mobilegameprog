@@ -28,6 +28,10 @@ public class SGame
     float offset = 0.f;
     float timer = 0.f;
     int points, hp;
+
+    //pause
+    private boolean isPaused=false;
+
     //Constructor does not allow anyone else to create another game
     private SGame()
     {
@@ -81,6 +85,9 @@ public class SGame
         //hp = 3;
        // HealthSystem.Instance.setHealth(hp);
 
+        //create pause here
+       // SamplePauseButton.Create();
+
     }
     protected void Render (Canvas _canvas)
     {
@@ -91,6 +98,15 @@ public class SGame
         _canvas.drawText(Integer.toString(Score.Instance.getScore()), 140, 1720, score);
     }
 
+    //Pause
+    public boolean GetIsPaused()
+    {
+        return isPaused;
+    }
 
+    public void SetIsPaused(boolean _newPause)
+    {
+        isPaused = _newPause;
+    }
 }
 
