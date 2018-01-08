@@ -45,6 +45,7 @@ public class SamplePauseButton implements EntityBase, Collidable
     @Override
     public void Update(float _dt)
     {
+        boolean paused = false;
         if(TouchManager.Instance.IsDown() && !touched)
         {
             touched = true;
@@ -60,7 +61,14 @@ public class SamplePauseButton implements EntityBase, Collidable
                 // Collision
                 SGame.Instance.SetIsPaused(!SGame.Instance.GetIsPaused());
             }
+            paused=true;
+        }
 
+        //TODO: unpaused
+        else if(paused && TouchManager.Instance.IsDown() )
+        {
+            paused = false;
+            SGame.Instance.SetIsPaused(false);
         }
 
     }
