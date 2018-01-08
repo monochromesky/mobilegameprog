@@ -39,6 +39,11 @@ public class SGame
     }
     public void Update(float deltaTime)
     {
+        if(SGame.Instance.GetIsPaused())
+        {
+            return;
+        }
+
         timer += deltaTime;
         if (timer > 1.f)
         {
