@@ -86,7 +86,7 @@ public class SGame
        // HealthSystem.Instance.setHealth(hp);
 
         //create pause here
-       // SamplePauseButton.Create();
+       SamplePauseButton.Create();
 
     }
     protected void Render (Canvas _canvas)
