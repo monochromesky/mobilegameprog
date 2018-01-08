@@ -99,6 +99,18 @@ public class EntityManager
         _newEntity.Init(view); //Stored from initialization
         entityList.add(_newEntity);
     }
+
+    public void updatepausebutton(float dt)
+    {
+        for (EntityBase currEntity : entityList)
+        {
+            //check if instanceof
+            if (currEntity instanceof SamplePauseButton)
+            {
+                currEntity.Update(dt);
+            }
+        }
+    }
 }
 
 

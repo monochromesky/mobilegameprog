@@ -64,13 +64,6 @@ public class SamplePauseButton implements EntityBase, Collidable
             paused=true;
         }
 
-        //TODO: unpaused
-        else if(paused && TouchManager.Instance.IsDown() )
-        {
-            paused = false;
-            SGame.Instance.SetIsPaused(false);
-        }
-
     }
 
     @Override

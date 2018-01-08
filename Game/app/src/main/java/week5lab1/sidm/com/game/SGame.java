@@ -39,6 +39,8 @@ public class SGame
     }
     public void Update(float deltaTime)
     {
+        EntityManager.Instance.updatepausebutton(deltaTime);
+
         if(SGame.Instance.GetIsPaused())
         {
             return;
