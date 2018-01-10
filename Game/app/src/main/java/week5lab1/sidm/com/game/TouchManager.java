@@ -70,6 +70,12 @@ public class TouchManager
     {
         return posY2;
     }
+
+    public void SetTouchStateNone()
+    {
+        status = TouchState.NONE;
+    }
+
     public void Update(int _posX, int _posY, int _motionEventStatus)
     {
        // posX = _posX;

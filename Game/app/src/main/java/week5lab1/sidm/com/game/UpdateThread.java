@@ -23,6 +23,8 @@ public class UpdateThread extends Thread
         view = _view;
         holder = _view.getHolder();
 
+        AudioManager.Instance.Init(_view);
+
         //Init here game
         SGame.Instance.Init(_view);
     }

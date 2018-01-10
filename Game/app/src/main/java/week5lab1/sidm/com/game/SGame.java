@@ -1,17 +1,10 @@
 package week5lab1.sidm.com.game;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 /**
  * Created by User on 25/11/2017.
@@ -91,6 +84,9 @@ public class SGame
         points = 0;
         //hp = 3;
        // HealthSystem.Instance.setHealth(hp);
+        //AudioManager.Instance.PlayAudio(R.raw.background_music);
+        AudioManager.Instance.PlayAudio(R.raw.nlctown);
+
 
         //create pause here
        SamplePauseButton.Create();
