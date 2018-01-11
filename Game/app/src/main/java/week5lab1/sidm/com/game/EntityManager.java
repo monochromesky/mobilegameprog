@@ -3,6 +3,8 @@ package week5lab1.sidm.com.game;
 import android.graphics.Canvas;
 import android.view.SurfaceView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 public class EntityManager
@@ -89,6 +91,17 @@ public class EntityManager
 
     public void Render(Canvas _canvas)
     {
+        //Use 'rendering layer' to sort the render order
+        Collections.sort(entityList, new Comparator<EntityBase>()
+        {
+            @Override
+
+            //Compares between two objects
+            public int compare(EntityBase o1, EntityBase o2) {
+                return o1.GetRenderLayer() - o2.GetRenderLayer();
+            }
+        });
+
         for (EntityBase currEntity : entityList)
         {
             currEntity.Render(_canvas);

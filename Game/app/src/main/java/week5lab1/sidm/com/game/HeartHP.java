@@ -18,6 +18,8 @@ public class HeartHP implements EntityBase, Collidable
 
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
+    private int renderLayer = 0;
+    private boolean isInit = false;
 
     @Override
     public boolean IsDone() {
@@ -100,6 +102,11 @@ public class HeartHP implements EntityBase, Collidable
     }
 
     @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
     public boolean isPlatform()
     {
         return false;
@@ -131,6 +138,23 @@ public class HeartHP implements EntityBase, Collidable
         return hearthp.getHeight() * 0.5f;
     }
 
+    @Override
+    public int GetRenderLayer()
+    {
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer)
+    {
+        renderLayer = _newLayer;
+    }
+    public static HeartHP Create(int _layer)
+    {
+        HeartHP result = Create();
+        result.SetRenderLayer(_layer);
+        return result;
+    }
     @Override
     public void OnHit(Collidable _other) {
         if (_other.GetType() == "HeartHP")

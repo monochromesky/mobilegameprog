@@ -42,8 +42,8 @@ public class SGame
         timer += deltaTime;
         if (timer > 1.f)
         {
-            HeartHP.Create();
-            Hazards.Create();
+            HeartHP.Create(LayerConstants.GAMEOBJECTS_LAYER);
+            Hazards.Create(LayerConstants.GAMEOBJECTS_LAYER);
 
             timer = 0.f;
             points += 1;
@@ -72,12 +72,16 @@ public class SGame
 
         EntityManager.Instance.Init(_view);
         GameBackground.Create();
+        //platform.Create(LayerConstants.GAMEOBJECTS_LAYER);
         platform.Create(100, 500);
+        platform.Create(300, 500);
+        platform.Create(500, 500);
+        platform.Create(800, 500);
         platform.Create(700, 800);
         platform.Create(100,1100);
         platform.Create(550,1400);
-        character.Create(200,50);
-        UI.Create();
+        character.Create(500,50);
+        UI.Create(LayerConstants.UI_LAYER);
         //Hazards.Create();
 
         //Highscore
@@ -87,6 +91,9 @@ public class SGame
         //AudioManager.Instance.PlayAudio(R.raw.background_music);
         AudioManager.Instance.PlayAudio(R.raw.nlctown);
 
+        //Create (and set render layer)
+       // character.Create(LayerConstants.GAMEOBJECTS_LAYER);
+        //character.Create(1000,0);
 
         //create pause here
        SamplePauseButton.Create();

@@ -16,7 +16,9 @@ public class Hazards implements EntityBase, Collidable
 
     private boolean isDone = false;
     private float xPos, yPos, xDir, yDir, lifeTime;
+    private boolean isInit = false;
 
+    private int renderLayer = 0;
     @Override
     public boolean IsDone() {
         //return health <= 0; E.g
@@ -89,11 +91,33 @@ public class Hazards implements EntityBase, Collidable
 
     }
 
+    @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
+    public int GetRenderLayer() {
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        renderLayer = _newLayer;
+
+    }
+
 
     public static Hazards Create()
     {
         Hazards result = new Hazards();
         EntityManager.Instance.AddEntity(result);
+        return result;
+    }
+    public static Hazards Create(int _layer)
+    {
+        Hazards result = Create();
+        result.SetRenderLayer(_layer);
         return result;
     }
 

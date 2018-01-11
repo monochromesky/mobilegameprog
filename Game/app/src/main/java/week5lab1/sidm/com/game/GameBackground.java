@@ -14,6 +14,7 @@ public class GameBackground implements EntityBase
    // private Bitmap clouds2 = null;
 
     private boolean isDone = false;
+    private boolean isInit = false;
 
     private float xPos, yPos, offset;
     private SurfaceView view = null;
@@ -21,6 +22,7 @@ public class GameBackground implements EntityBase
     // For fading animation
     private Paint alphaPaint = new Paint();
     private int currentAlpha;
+    private int renderLayer = 0;
 
     @Override
     public boolean IsDone()
@@ -85,14 +87,30 @@ public class GameBackground implements EntityBase
 
     }
 
+    @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+
     public static GameBackground Create()
     {
         GameBackground result = new GameBackground();
         EntityManager.Instance.AddEntity(result);
         return result;
     }
+    @Override
+    public int GetRenderLayer()
+    {
+        return LayerConstants.BACKGROUND_LAYERS;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer)
+    {
+        return;
+    }
 
 
 }
-
 

@@ -16,6 +16,7 @@ public class SamplePauseButton implements EntityBase, Collidable
     private boolean IsInit = false;
     private int renderLayer = 0;
     boolean touched = false;
+    private boolean isInit = false;
 
     @Override
     public boolean IsDone() {
@@ -84,6 +85,22 @@ public class SamplePauseButton implements EntityBase, Collidable
 
     }
 
+    @Override
+    public boolean IsInit() {
+        return IsInit;
+    }
+
+    @Override
+    public int GetRenderLayer()
+    {
+        return LayerConstants.UI_LAYER;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer)
+    {
+        return;
+    }
 
     public static SamplePauseButton Create() {
         SamplePauseButton result = new SamplePauseButton();

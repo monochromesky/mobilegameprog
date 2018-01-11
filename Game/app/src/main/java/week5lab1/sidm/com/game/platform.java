@@ -20,6 +20,8 @@ public class platform implements EntityBase, Collidable
     private boolean isDone = false;
     private boolean thePlatform = true;
     private float xPos, yPos, xDir, yDir, lifeTime;
+    private int renderLayer = 0;
+    private boolean isInit = false;
 
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
@@ -104,19 +106,46 @@ public class platform implements EntityBase, Collidable
     }
 
     @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
     public boolean isPlatform()
     {
         return thePlatform;
     }
 
-    public static platform Create(int pox, int posy)
+    @Override
+    public int GetRenderLayer()
+    {
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer)
+    {
+        renderLayer = _newLayer;
+    }
+
+
+    public static platform Create(int posx, int posy)
     {
         platform result = new platform();
-        result.xPos = pox;
+        result.xPos = posx;
         result.yPos = posy;
         EntityManager.Instance.AddEntity(result);
+
         return result;
     }
+  //  public static platform Create(int _layer)
+  //  {
+  //      platform result = Create(0, 0);
+   //     result.SetRenderLayer(_layer);
+   //     return result;
+   // }
+
+
     @Override
     public String GetType() {
         return "platform";

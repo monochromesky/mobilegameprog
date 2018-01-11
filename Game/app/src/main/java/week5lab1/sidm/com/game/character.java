@@ -25,6 +25,10 @@ public class character implements EntityBase, Collidable
     int playerhealth;
     private int currentAlpha;
     private Paint alphaPaint = new Paint();
+    private boolean isOnLeft = true;
+    private boolean isOnRight = true;
+    private int renderLayer = 0;
+    private boolean isInit = false;
 
     private short animIndex = 0;
     @Override
@@ -146,24 +150,36 @@ public class character implements EntityBase, Collidable
 
         }
 
-        xPos += xDir*_dt;
+        // xPos += xDir*_dt;
         //swipe right
-        if (TouchManager.Instance.IsFlingRight())
+        if (TouchManager.Instance.IsFlingRight() && isOnLeft && xPos <= 1000)
         {
             // Check Collision here
             xDir = 500.f;
-            xPos -= xDir*_dt;
-
+           // xPos -= xDir*_dt;
+            xPos += xDir*_dt;
+            // TODO : SET BOUNDARY HERE
+            if (xPos >= 1000) {
+                isOnRight = true;
+                isOnLeft = false;
+                TouchManager.Instance.SetTouchStateNone();
+            }
         }
 
         //xPos2 -= xDir*_dt;
         //swipe left
-        if (TouchManager.Instance.IsFlingLeft())
+        if (TouchManager.Instance.IsFlingLeft() && isOnRight && xPos >= 0)
         {
             // Check Collision here
             xDir = -500.f;
-            xPos -= xDir*_dt;
+            xPos += xDir*_dt;
 
+            // TODO : SET BOUNDARY HERE
+            if (xPos <= 0) {
+                isOnLeft = true;
+                isOnRight = false;
+                TouchManager.Instance.SetTouchStateNone();
+            }
         }
     }
 
@@ -199,6 +215,23 @@ public class character implements EntityBase, Collidable
 
     }
 
+    @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
+    public int GetRenderLayer()
+    {
+        //return LayerConstants.UI_LAYER;
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer)
+    {
+        renderLayer = _newLayer;
+    }
 
     public static character Create(int pox, int posy)
     {
@@ -208,6 +241,14 @@ public class character implements EntityBase, Collidable
         EntityManager.Instance.AddEntity(result);
         return result;
     }
+
+  //  public static character Create(int _layer)
+   // {
+    //    character result = Create(0, 0);
+     //   result.SetRenderLayer(_layer);
+      //  return result;
+    //}
+
     @Override
     public String GetType() {
         return "character";

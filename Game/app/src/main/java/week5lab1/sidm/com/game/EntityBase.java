@@ -12,5 +12,9 @@ public interface EntityBase
     void Init(SurfaceView _view);
     void Update(float _dt);
     void Render (Canvas _canvas);
+
+    boolean IsInit();
+    int GetRenderLayer();
+    void SetRenderLayer(int _newLayer);
 }
 

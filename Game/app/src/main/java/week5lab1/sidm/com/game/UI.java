@@ -19,6 +19,8 @@ public class UI implements EntityBase {
     private Bitmap hearticon = null;
 
     private boolean isDone = false;
+    private boolean isInit = false;
+    private int renderLayer = 0;
 
     private float xPos, yPos, offset;
     private SurfaceView view = null;
@@ -91,10 +93,32 @@ public class UI implements EntityBase {
 
     }
 
+    @Override
+    public boolean IsInit() {
+        return isInit;
+    }
+
+    @Override
+    public int GetRenderLayer() {
+        return renderLayer;
+    }
+
+    @Override
+    public void SetRenderLayer(int _newLayer) {
+        renderLayer = _newLayer;
+    }
+
     public static UI Create()
     {
         UI result = new UI();
         EntityManager.Instance.AddEntity(result);
+        return result;
+    }
+
+    public static UI Create(int _layer)
+    {
+        UI result = Create();
+        result.SetRenderLayer(_layer);
         return result;
     }
 
